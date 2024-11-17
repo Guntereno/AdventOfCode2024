@@ -2,7 +2,7 @@
 
 #include <fstream>
 #include <sstream>
-
+#include <stdexcept>
 
 Day01::Day01()
 {

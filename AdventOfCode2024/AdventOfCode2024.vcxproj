@@ -153,11 +153,13 @@
     <ClCompile Include="Source\AdventOfCode2024.cpp" />
     <ClCompile Include="Source\Days\Day01.cpp" />
     <ClCompile Include="Source\Days\Day02.cpp" />
+    <ClCompile Include="Source\Days\Day03.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Days\Day.h" />
     <ClInclude Include="Include\Days\Day02.h" />
     <ClInclude Include="Include\Days\Day01.h" />
+    <ClInclude Include="Include\Days\Day03.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Data\Day01.txt" />
