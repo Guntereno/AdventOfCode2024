@@ -1,15 +1,5 @@
 #include "Days/Day.h"
 
-#include <algorithm>
-#include <array>
-#include <cstdlib>
-#include <fstream>
-#include <sstream>
-#include <stdexcept>
-#include <string>
-#include <map>
-#include <vector>
-
 Day02::Day02()
 {
 

@@ -1,5 +1,6 @@
 #include "Days/Day.h"
 
+#include <assert.h>
 #include <algorithm>
 #include <array>
 #include <cstdlib>
@@ -18,24 +19,29 @@ Day01::Day01()
 		throw std::runtime_error("Failed to open file!");
 	}
 
-	constexpr size_t kNumLists = 2;
-	std::array<std::vector<int>, kNumLists> location_lists{ std::vector<int>(), std::vector<int>() };
+	std::vector<int> list_a;
+	std::vector<int> list_b;
 
+	// Value is the frequency in which the key appears in list_b
 	std::map<int, int> frequency_map;
 
 	std::string line;
 	while (std::getline(file_stream, line))
 	{
+		// Read each value in the line
 		std::istringstream line_stream(line);
 		std::string entry_str;
-		int list_index = 0;
+		int entry_index = 0;
 		while (line_stream >> entry_str)
 		{
 			int val = std::stoi(entry_str);
-			location_lists[list_index].push_back(val);
+
+			// Add the value to the correct list
+			std::vector<int>& list = (entry_index == 0) ? list_a : list_b;
+			list.push_back(val);
 			
-			// Frequency map is built using the numbers in the second column
-			if (list_index == 1)
+			// Update the entry in the frequency map
+			if (entry_index == 1)
 			{
 				auto frequency_entry = frequency_map.find(val);
 				if (frequency_entry == frequency_map.end())
@@ -48,30 +54,31 @@ Day01::Day01()
 				}
 			}
 
-			++list_index;
+			++entry_index;
 		}
 	}
 
-	for (auto& list : location_lists)
-	{
-		std::sort(list.begin(), list.end());
-	}
+	// The list need to be sorted so we can compare the correct values for the distance calculation
+	std::sort(list_a.begin(), list_a.end());
+	std::sort(list_b.begin(), list_b.end());
 
-	int total_error = 0;
+	// Iterate through and calculate the distance and similarity for our data
+	int total_distance = 0;
 	int total_similarity = 0;
-	for (size_t i = 0; i < location_lists[0].size(); ++i)
+	assert(list_a.size() == list_b.size());
+	for (size_t i = 0; i < list_a.size(); ++i)
 	{
-		int a = location_lists[0][i];
-		int b = location_lists[1][i];
+		int a = list_a[i];
+		int b = list_b[i];
 		int diff = std::abs(b - a);
-		total_error += diff;
+		total_distance += diff;
 
 		int frequency = frequency_map[a];
 		int similarity = a * frequency;
 		total_similarity += similarity;
 	}
 
-	_answer1 = total_error;
+	_answer1 = total_distance;
 	_answer2 = total_similarity;
 }
 
