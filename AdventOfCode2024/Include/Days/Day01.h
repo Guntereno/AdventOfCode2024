@@ -18,6 +18,6 @@ public:
 	}
 
 private:
-	int _currentFloor = 0;
-	int _firstInBasement = -1;
+	int _answer1 = -1;
+	int _answer2 = -1;
 };
