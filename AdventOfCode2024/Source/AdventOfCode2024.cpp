@@ -6,8 +6,6 @@
 
 #include "Days/Day.h"
 #include "Days/Day01.h"
-#include "Days/Day02.h"
-#include "Days/Day03.h"
 
 namespace
 {
@@ -22,7 +20,7 @@ namespace
 
         std::unique_ptr<Day> Day = dayFactory();
 
-        std::cout << "Day " << Day->GetIndex() << std::endl;
+        std::cout << "# Day " << Day->GetIndex() << std::endl;
 
         std::cout << "Part 1: " << Day->Part1() << std::endl;
         std::cout << "Part 2: " << Day->Part2() << std::endl;
@@ -32,7 +30,7 @@ namespace
 
         std::cout << "(Completed in " << duration.count() << " microseconds)" << std::endl;
 
-        std::cout << "Day " << Day->GetIndex() << std::endl;
+        std::cout << std::endl;
     }
 
 
@@ -48,8 +46,6 @@ int main(int argc, char* argv[])
     std::vector<DayFactoryFunc> Days
     {
         []() { return std::make_unique<Day01>(); },
-        []() { return std::make_unique<Day02>(); },
-        []() { return std::make_unique<Day03>(); }
     };
 
     bool runAll = cmdOptionExists(argv, argv + argc, "-a");

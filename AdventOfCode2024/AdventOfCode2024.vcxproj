@@ -126,7 +126,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,18 +152,13 @@
   <ItemGroup>
     <ClCompile Include="Source\AdventOfCode2024.cpp" />
     <ClCompile Include="Source\Days\Day01.cpp" />
-    <ClCompile Include="Source\Days\Day02.cpp" />
-    <ClCompile Include="Source\Days\Day03.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Days\Day.h" />
-    <ClInclude Include="Include\Days\Day02.h" />
     <ClInclude Include="Include\Days\Day01.h" />
-    <ClInclude Include="Include\Days\Day03.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Data\Day01.txt" />
-    <Text Include="Data\Day02.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

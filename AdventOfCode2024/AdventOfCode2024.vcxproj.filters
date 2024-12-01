@@ -21,32 +21,17 @@
     <ClCompile Include="Source\Days\Day01.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Days\Day02.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Days\Day03.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Days\Day01.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Days\Day02.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Days\Day.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Days\Day03.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Data\Day01.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="Data\Day02.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
