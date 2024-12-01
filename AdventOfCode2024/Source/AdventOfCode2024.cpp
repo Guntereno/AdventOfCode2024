@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Days/Day.h"
-#include "Days/Day01.h"
+
 
 namespace
 {
@@ -46,6 +46,7 @@ int main(int argc, char* argv[])
     std::vector<DayFactoryFunc> Days
     {
         []() { return std::make_unique<Day01>(); },
+        []() { return std::make_unique<Day02>(); },
     };
 
     bool runAll = cmdOptionExists(argv, argv + argc, "-a");

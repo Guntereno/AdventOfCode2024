@@ -1,4 +1,4 @@
-#include "Days/Day01.h"
+#include "Days/Day.h"
 
 #include <algorithm>
 #include <array>
