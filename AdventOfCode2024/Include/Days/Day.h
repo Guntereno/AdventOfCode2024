@@ -20,8 +20,8 @@ class Day##N : public Day                                   \
 public:                                                     \
     Day##N();                                               \
                                                             \
-    std::string Part1() override;                           \
-    std::string Part2() override;                           \
+    std::string Part1() override { return _answer1; }       \
+    std::string Part2() override { return _answer2; }       \
                                                             \
     int GetIndex() override                                 \
     {                                                       \
@@ -29,8 +29,8 @@ public:                                                     \
     }                                                       \
                                                             \
 private:                                                    \
-    int _answer1 = -1;                                      \
-    int _answer2 = -1;                                      \
+    std::string _answer1 = "";                              \
+    std::string _answer2 = "";                              \
 };
 
 

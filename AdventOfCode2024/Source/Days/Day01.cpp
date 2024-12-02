@@ -78,16 +78,6 @@ Day01::Day01()
 		total_similarity += similarity;
 	}
 
-	_answer1 = total_distance;
-	_answer2 = total_similarity;
-}
-
-std::string Day01::Part1()
-{
-	return std::to_string(_answer1);
-}
-
-std::string Day01::Part2()
-{
-	return std::to_string(_answer2);
+	_answer1 = std::to_string(total_distance);
+	_answer2 = std::to_string(total_similarity);
 }
