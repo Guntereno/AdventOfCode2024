@@ -31,7 +31,7 @@ namespace
 		return ChangeDirection::INCREASING;
 	}
 
-	bool is_report_safe(const std::vector<int>& levels, int& out_error_index)
+	bool is_report_safe(const std::vector<int>& levels)
 	{
 		int prev_val = levels[0];
 
@@ -41,21 +41,18 @@ namespace
 			int cur_val = levels[i];
 			if (cur_val == prev_val)
 			{
-				out_error_index = i;
 				return false;
 			}
 
 			ChangeDirection current_direction = get_change_direction(prev_val, cur_val);
 			if ((prev_direction != ChangeDirection::UNINITIALISED) && (current_direction != prev_direction))
 			{
-				out_error_index = i;
 				return false;
 			}
 
 			int diff = std::abs(cur_val - prev_val);
 			if (diff > 3)
 			{
-				out_error_index = i;
 				return false;
 			}
 
@@ -81,8 +78,7 @@ namespace
 		}
 
 		// Check if it's safe as-is
-		int error_index = -1;
-		bool is_safe = is_report_safe(levels, error_index);
+		bool is_safe = is_report_safe(levels);
 		if (is_safe)
 		{
 			out_safe = out_safe_dampened = true;
