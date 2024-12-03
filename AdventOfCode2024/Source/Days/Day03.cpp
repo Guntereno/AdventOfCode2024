@@ -98,50 +98,22 @@ namespace
 
 			case ParsingState::ARG1:
 			{
-				ParsingResult arg_result = _arg_parser.parse_char(ch);
-				switch (arg_result)
-				{
-				case CONTINUE:
-					++_index;
-					break;
-
-				case FAILED:
-					reset();
-					break;
-
-				case SUCCESS:
-					on_arg1();
-					reset(ParsingState::ARG2, TERMINATOR_ARG2);
-					break;
-
-				default:
-					throw std::runtime_error("Unhandled result!");
-				}
+				ParseArgument([this]()
+					{
+						on_arg1();
+						reset(ParsingState::ARG2, TERMINATOR_ARG2);
+					});
 				break;
 			}
 
 			case ParsingState::ARG2:
 			{
-				ParsingResult arg_result = _arg_parser.parse_char(ch);
-				switch (arg_result)
-				{
-				case CONTINUE:
-					++_index;
-					break;
-
-				case FAILED:
-					reset();
-					break;
-
-				case SUCCESS:
-					on_arg2();
-					reset();
-					_result = ParsingResult::SUCCESS;
-					break;
-
-				default:
-					throw std::runtime_error("Unhandled result!");
-				}
+				ParseArgument([this]()
+					{
+						on_arg2();
+						reset();
+						_result = ParsingResult::SUCCESS;
+					});
 				break;
 			}
 
@@ -167,6 +139,28 @@ namespace
 	private:
 		static constexpr char TERMINATOR_ARG1 = ',';
 		static constexpr char TERMINATOR_ARG2 = ')';
+
+		void ParseArgument(void (*on_success)())
+		{
+			ParsingResult arg_result = _arg_parser.parse_char(ch);
+			switch (arg_result)
+			{
+			case CONTINUE:
+				++_index;
+				break;
+
+			case FAILED:
+				reset();
+				break;
+
+			case SUCCESS:
+				on_success();
+				break;
+
+			default:
+				throw std::runtime_error("Unhandled result!");
+			}
+		}
 
 		void reset(ParsingState parsing_state = ParsingState::COMMAND, char terminator = TERMINATOR_ARG1)
 		{
