@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <fstream>
+#include <functional>
 #include <string>
 
 namespace
@@ -26,6 +27,7 @@ namespace
 	}
 
 
+	// Maintains state for parsing an argument from a stream of characters
 	class ArgParser
 	{
 	public:
@@ -70,6 +72,7 @@ namespace
 	};
 
 
+	// Maintains state for parsing a command from a stream of characters
 	class CommandParser
 	{
 	public:
@@ -85,7 +88,7 @@ namespace
 				if (ch == COMMAND[_index])
 				{
 					++_index;
-					if (_index == COMMAND.size()) // Minus the null terminator
+					if (_index == COMMAND.size())
 					{
 						reset(ParsingState::ARG1, TERMINATOR_ARG1);
 					}
@@ -98,22 +101,24 @@ namespace
 
 			case ParsingState::ARG1:
 			{
-				ParseArgument([this]()
+				auto on_success = [this]()
 					{
 						on_arg1();
 						reset(ParsingState::ARG2, TERMINATOR_ARG2);
-					});
+					};
+				parse_argument(ch, on_success);
 				break;
 			}
 
 			case ParsingState::ARG2:
 			{
-				ParseArgument([this]()
+				auto on_success = [this]()
 					{
 						on_arg2();
 						reset();
 						_result = ParsingResult::SUCCESS;
-					});
+					};
+				parse_argument(ch, on_success);
 				break;
 			}
 
@@ -140,7 +145,7 @@ namespace
 		static constexpr char TERMINATOR_ARG1 = ',';
 		static constexpr char TERMINATOR_ARG2 = ')';
 
-		void ParseArgument(void (*on_success)())
+		void parse_argument(char ch, const std::function<void()>& on_success)
 		{
 			ParsingResult arg_result = _arg_parser.parse_char(ch);
 			switch (arg_result)
