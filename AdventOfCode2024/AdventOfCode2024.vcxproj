@@ -153,6 +153,7 @@
     <ClCompile Include="Source\AdventOfCode2024.cpp" />
     <ClCompile Include="Source\Days\Day01.cpp" />
     <ClCompile Include="Source\Days\Day02.cpp" />
+    <ClCompile Include="Source\Days\Day03.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Common\Common.h" />

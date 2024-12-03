@@ -36,3 +36,4 @@ private:                                                    \
 
 DEFINE_DAY_CLASS(01);
 DEFINE_DAY_CLASS(02);
+DEFINE_DAY_CLASS(03);

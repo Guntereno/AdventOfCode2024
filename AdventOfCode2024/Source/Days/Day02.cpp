@@ -91,7 +91,7 @@ namespace
 		{
 			std::vector<int> reduced_levels = levels;
 			reduced_levels.erase(reduced_levels.begin() + i);
-			bool is_safe = is_report_safe(reduced_levels, error_index);
+			bool is_safe = is_report_safe(reduced_levels);
 			if (is_safe)
 			{
 				out_safe_dampened = true;

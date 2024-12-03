@@ -47,6 +47,7 @@ int main(int argc, char* argv[])
     {
         []() { return std::make_unique<Day01>(); },
         []() { return std::make_unique<Day02>(); },
+        []() { return std::make_unique<Day03>(); },
     };
 
     bool runAll = cmdOptionExists(argv, argv + argc, "-a");
